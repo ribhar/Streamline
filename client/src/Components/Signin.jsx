@@ -2,11 +2,13 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Styles from "./Styles.module.css"
 
 const Signin = () => {
 
     const[login,setLogin] = useState([])
     const navigate = useNavigate()
+
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -15,30 +17,39 @@ const Signin = () => {
         setLogin({...login,[input]:e.target.value})
     }
 
-    console.log(login,"login")
+  
 
-    const handleSubmit = (e) => {
-        // e.preventDefault()
-        axios.post("",login)
+    const handleSubmit = async() => {
+      console.log(login,"login")
+
+        const res = await axios.post("http://localhost:8080/auth/login",login);
+
+        console.log(res,"res")
+
+        if(res)
+        {
+          alert("login successfull")
+          navigate("/")
+        }
     }
  
  
 
   return (
 
-    <div>
+    <div className={Styles.main}>
         
     <div>
-    <h2>Welcome Back</h2>
-         <input type="text" placeholder='Name' name="Name"  onChange={handleChange}/>
+    <h2 className={Styles.div2}>Login</h2>
+         <input className={Styles.input} type="text" placeholder='Enter Email Address' name="email"  onChange={handleChange}/>
     </div>
 
     <div >
-       <input type="password" placeholder='Password'  name="Password" onChange={handleChange}/>
+       <input className={Styles.input}  type="password" placeholder='Enter Password'  name="password" onChange={handleChange}/>
     </div>
 
 
-    <div>
+    <div className={Styles.signup} >
     <button onClick={handleSubmit}>Sign In</button>
     </div>
 

@@ -4,16 +4,37 @@
     padding: 25px;
     font-size: 22px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-image: url("https://wallpaperaccess.com/full/4201613.jpg");
-    color: white
+    margin: auto;
+    width: 500px;
+    background-color: #E6FFFA;
+    color: black;
+    margin-top: 5%;
+   
+}
+.input{
+    background-color: white;
+    width: 450px;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 .signup>button{
-
-    background-color: #319795;
+    background-color: #2C7A7B;
     border-radius: 20px;
-    margin: auto;
-    width: 100px;
+    width: 450px;
     height:35px;
+    color: white;
+    margin-top: 15px;
+}
+.signup>button:hover{
+
+    background-color: white;
+    border-radius: 20px;
+    width: 450px;
+    height:35px;
+    color:  #2C7A7B;
+    border: 1px solid  #2C7A7B;
+
 }
 .div2{
    text-align: center;
@@ -21,22 +42,14 @@
     /* color: white; */
     /* background-image:url('https://cdn.wallpapersafari.com/29/10/uOZT3v.jpg') */
 }
-.div2>h2{
-    /* color: white; */
-
+.mainOtp{
+    margin: auto;
+    width: 450px;
+    margin-top: 10%;
+    /* border: 1px solid red; */
 }
-.signup{
-    width: 100px;
+.otpinput{
     /* border: 1px solid red; */
     margin: auto;
-    margin-top: 10px;
-}
-
-.signup>button:hover{
-
-    background-color:#2C7A7B
-
-}
-.div{
-    margin-top: 10px;
+    width: 190px;
 }

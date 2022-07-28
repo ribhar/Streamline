@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import Styles from "./Styles.module.css"
 import { Button, ButtonGroup } from '@chakra-ui/react'
 
+
 const Signup = () => {
 
     const[register,setRegister] = useState([])
+    const[id,setId] = useState("")
 
     const navigate = useNavigate()
 
@@ -18,34 +20,41 @@ const Signup = () => {
         
         setRegister({...register,[input]:e.target.value})
     }
-    console.log(register,"register details")
+    // console.log(register,"register details")
 
     
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = async() => {
+      
         // console.log("hello")
-        // setSend([register])
-        // axios.post("",register)
-        // navigate("/login")
+        try{
+         await axios.post("http://localhost:8080/auth/register",register).then(({data}) =>{
+            console.log(data,"data")
+
+           
+            setId(data.user._id)
+            var x = data.user._id
+
+            console.log(x,"x")
+
+            navigate(`/verify/${x}`)
+           
+          })
+
+
+        }catch(err)
+        {
+          console.log(err)
+        }
+        console.log(id,'id')
+
+        
     }
 
 
   return (
 
-    <div className={Styles.main}
-    style={{margin:'auto',width:'300px'
-    ,marginTop:'10%'}}>
+    <div className={Styles.main}>
 
-
-{/* <svg  width="100" height="40" backgroundColor="red" color="red">
-      <BasisCurve backgroundColor="red"
-        data={[
-          [0, 20],
-          [50, 35],
-          [100, 0],
-        ]}
-      />
-    </svg> */}
 
     <div className={Styles.div2}>
       <h2>Sign Up</h2>
@@ -53,31 +62,40 @@ const Signup = () => {
     
     <div className={Styles.div}>
       <h3>Username</h3>
-    <input style={{backgroundColor:'white'}} 
-    type="text" placeholder='username' name="Name" required onChange={handleChange}/>
+    <input className={Styles.input} 
+    type="text" placeholder='Enter Username' name="username" required onChange={handleChange}/>
     </div>
 
     <div className={Styles.div}>
       <h3>Email</h3>
-        <input style={{backgroundColor:'white'}}
-         type="text" placeholder='email'  name="Email" required onChange={handleChange}/>
+        <input className={Styles.input} 
+         type="text" placeholder='Enter Email Address'  name="email" required onChange={handleChange}/>
     </div>
 
     <div className={Styles.div}>
       <h3>Password</h3>
-       <input style={{backgroundColor:'white'}}
-        type="password" placeholder='Password'  name="Password" required onChange={handleChange}/>
+       <input className={Styles.input} 
+        type="password" placeholder='Enter Password'  name="password" required onChange={handleChange}/>
     </div>
+
+    {/* <div className={Styles.div}>
+      <h3>Confirm Password</h3>
+       <input className={Styles.input} 
+        type="password" placeholder='Confirm Password'  name="Password" required onChange={handleChange}/>
+    </div> */}
+
 
 
     <div className={Styles.signup}>
     <button onClick={handleSubmit}>Sign Up</button>
     </div>
 
-
-    {/* <Button colorScheme='teal' size='lg'>
-    Button
-   </Button> */}
+    <div style={{marginTop:"10px"}} className={Styles.signup}>
+    <p>Already have an account ?</p>
+    <button onClick={() => {
+      navigate("/login")
+    }}>Login</button>
+    </div>
 
     </div>
 
