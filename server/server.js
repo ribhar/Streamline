@@ -3,6 +3,8 @@ const env = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoute = require("./routes/user.routes");
+const messageRoute = require("./routes/messages.routes");
+const chatRoute = require("./routes/chat.routes");
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth",userRoute);
+app.use("/messages",messageRoute);
+app.use("/chat",chatRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello");

@@ -29,8 +29,15 @@ const userSchema = new Schema({
     avatarImage:{
         type: String,
         default: "",
+    },
+    isAdmin:{
+        type: Boolean,
+        required: true,
+        default:false
     }
-})
+},
+{timestamps:true}
+)
 
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")){
