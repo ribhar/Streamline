@@ -21,7 +21,7 @@ const JoinCreateTeam = () => {
             
           <div className={'flex flex-col items-center gap-5 '+(isclicked? "block" : "hidden")}>
 
-              <input className='rounded-xl border border-teal-900  px-2 py-1  outline-none' type="text" placeholder='Enter Team Name'/>
+              <input className='rounded-xl border shadow-lg shadow-teal-900/20  px-2 py-1  outline-none' type="text" placeholder='Enter Team Name'/>
               <TagInput/>
               <button className='rounded-xl bg-teal-600 text-white px-2 py-1'>Create Team</button>
           
@@ -36,7 +36,7 @@ const JoinCreateTeam = () => {
             {/* <h2 className='text-2xl mb-5'>Join Team </h2> */}
             
           <div className={'flex justify-center gap-5 '+(isclicked1? "block" : "hidden")}>
-                <input className='rounded-xl border border-teal-900  px-2 py-1  outline-none'type="text" placeholder='Enter Team ID'/>
+                <input className='rounded-xl border shadow-lg shadow-teal-900/20  px-2 py-1  outline-none'type="text" placeholder='Enter Team ID'/>
                 <button className='rounded-xl bg-teal-600 text-white px-2 py-1'>Join Team</button>
             
             </div>
