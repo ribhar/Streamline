@@ -83,3 +83,20 @@ exports.getAllUsers = async(req, res,next)=>{
         next(error)
     }
 }
+
+exports.getUserDetails = async(req, res,next)=>{
+    try{
+        const username = req.query.username;
+        
+        if(!username){
+            const users = await User.find();
+            return res.status(200).json({status:true,users})
+        }
+
+        const users = await User.find({username:{$regex:username,$options:"i"}})
+
+        return res.status(200).json({status:true,users})
+    }catch(error){
+        next(error)
+    }
+}
