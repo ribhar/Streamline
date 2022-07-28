@@ -1,15 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
+import axios from 'axios'
 
 const TagInput = () => {
     const [tags,setTags] = useState([])
 
-    const handlekeydown = (e)=>{
-        if(e.key!=="Enter") return
-        const value = e.target.value
-        if(!value.trim()) return
-        setTags([...tags, value])
-        e.target.value = ''
+    const handlekeydown = async (e)=>{
+        try{
+            const value = e.target.value
+            const data  = await axios.get(`http://localhost:8080/auth/getUserDetails?username=${value}`)
+            console.log(data.data)
+            if(e.key!=="Enter") return
+            
+            if(!value.trim()) return
+            setTags([...tags, value])
+            e.target.value = ''
+        }
+        catch(e){
+            console.log(e)
+        }
+       
 
     }
 
@@ -37,7 +47,7 @@ const TagInput = () => {
         </span>
       </div>
       ))}
-      <input onKeyDown={handlekeydown} type="text" placeholder='Add Team Member' className='py-1 px-2 w-full rounded-xl outline-none'/>
+      <input onKeyUp={handlekeydown} type="text" placeholder='Add Team Member' className='py-1 px-2 w-full rounded-xl outline-none'/>
     </div>
   )
 }

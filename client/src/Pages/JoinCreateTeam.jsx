@@ -23,7 +23,6 @@ const JoinCreateTeam = () => {
 
               <input className='rounded-xl border border-teal-900  px-2 py-1  outline-none' type="text" placeholder='Enter Team Name'/>
               <TagInput/>
-              <input className='rounded-xl border border-teal-900  px-2 py-1  outline-none' type="text" placeholder='Add Team Member'/>
               <button className='rounded-xl bg-teal-600 text-white px-2 py-1'>Create Team</button>
           
           </div>
