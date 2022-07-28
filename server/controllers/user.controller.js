@@ -73,3 +73,30 @@ exports.checkOtp = async(req, res,next)=>{
         next(error)
     }
 }
+
+exports.getAllUsers = async(req, res,next)=>{
+    try {
+        const users = await User.find();
+        if(!users) return res.status(400).json({status:false,msg:"No users available"})
+        res.status(200).json({status:true,users})
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.getUserDetails = async(req, res,next)=>{
+    try{
+        const username = req.query.username;
+        
+        if(!username){
+            const users = await User.find();
+            return res.status(200).json({status:true,users})
+        }
+
+        const users = await User.find({username:{$regex:username,$options:"i"}})
+
+        return res.status(200).json({status:true,users})
+    }catch(error){
+        next(error)
+    }
+}
