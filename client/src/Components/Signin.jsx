@@ -39,12 +39,12 @@ const Signin = () => {
 
     <div className={Styles.main}>
         
-    <div>
+    <div className={Styles.div}>
     <h2 className={Styles.div2}>Login</h2>
          <input className={Styles.input} type="text" placeholder='Enter Email Address' name="email"  onChange={handleChange}/>
     </div>
 
-    <div >
+    <div className={Styles.div}>
        <input className={Styles.input}  type="password" placeholder='Enter Password'  name="password" onChange={handleChange}/>
     </div>
 

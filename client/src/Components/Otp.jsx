@@ -50,12 +50,12 @@ const Otp = () => {
     <div style={{marginTop:"12px"}} className={Styles.otpinput}>
     <HStack>
         <PinInput>
-            <PinInputField  backgroindeColor='white' onChange={(e) => setOtp1(e.target.value)} />
-            <PinInputField onChange={(e) => setOtp2(e.target.value)}/>
-            <PinInputField onChange={(e) => setOtp3(e.target.value)}/>
-            <PinInputField onChange={(e) => setOtp4(e.target.value)}/>
-            <PinInputField onChange={(e) => setOtp5(e.target.value)}/>
-            <PinInputField onChange={(e) => setOtp6(e.target.value)}/>
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp1(e.target.value)} />
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp2(e.target.value)}/>
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp3(e.target.value)}/>
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp4(e.target.value)}/>
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp5(e.target.value)}/>
+            <PinInputField style={{width:'90px'}} onChange={(e) => setOtp6(e.target.value)}/>
     
     </PinInput>
     </HStack>
