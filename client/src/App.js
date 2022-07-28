@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { extendTheme,ChakraProvider } from '@chakra-ui/react'
-// import Main from './Pages/Main';
+import Main from './Pages/Main';
 
 const colors = {
   brand: {
