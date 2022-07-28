@@ -3,11 +3,10 @@ import { PinInput, PinInputField } from '@chakra-ui/react'
 import { Stack, HStack, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import Styles from "./Styles.module.css"
-import { useParams } from "react-router-dom"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 
-const Otp = () => {
+const Otp = ({id}) => {
     const[otp1,setOtp1] = useState("")
     const[otp2,setOtp2] = useState("")
     const[otp3,setOtp3] = useState("")
@@ -15,31 +14,38 @@ const Otp = () => {
     const[otp5,setOtp5] = useState("")
     const[otp6,setOtp6] = useState("")
     const navigate = useNavigate()
-
-    const { id } = useParams();
     
     const handleSubmit = async() => {
         const otp=""+otp1+otp2+otp3+otp4+otp5+otp6
         console.log(otp,'otp')
-
-        const res = await axios.post(`http://localhost:8080/auth/checkOtp/${id}`,{otp:otp});
-
-        // console.log(res.data.token,"res")
-        console.log(res)
-        var token = res.data.token
-        if(res)
-        {
-            localStorage.setItem("token", JSON.stringify(token));
-            alert("user registered successfully")
+        try {
+            const {data} = await axios.post(`http://localhost:8080/auth/checkOtp/${id}`,{otp:otp});
             
-            navigate("/")
+        let payload = data.user;
+        payload.token = data.token;
 
+        localStorage.setItem("userInformation",JSON.stringify(payload));
+        
+        alert("registration successfull")
+        navigate("/chat")
+        } catch (error) {
+            alert("wrong OTP")
+            console.log(error);
         }
+        
+
+        
+        // console.log(id)
+        // var token = res.data.token
+        // if(res)
+        // {
+        //     localStorage.setItem("token", JSON.stringify(token));
+        //     alert("user registered successfully")
+            
+        //     navigate("/")
+
+        // }
     }
-
-   
-
-   
 
   return (
     <div className={Styles.mainOtp}>

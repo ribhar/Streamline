@@ -4,10 +4,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Styles from "./Styles.module.css"
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import Otp from './Otp'
 
 
 const Signup = () => {
-
+    const [showOtp,setShowOtp] = useState(false);
     const[register,setRegister] = useState([])
     const[id,setId] = useState("")
 
@@ -31,12 +32,13 @@ const Signup = () => {
             console.log(data,"data")
 
            
-            setId(data.user._id)
-            var x = data.user._id
+            setId(data.user._id);
+            setShowOtp(!showOtp);
+            // var x = data.user._id
 
-            console.log(x,"x")
+            // console.log(x,"x")
 
-            navigate(`/verify/${x}`)
+            // navigate(`/verify/${x}`)
            
           })
 
@@ -44,10 +46,7 @@ const Signup = () => {
         }catch(err)
         {
           console.log(err)
-        }
-        console.log(id,'id')
-
-        
+        } 
     }
 
 
@@ -90,12 +89,9 @@ const Signup = () => {
     <button onClick={handleSubmit}>Sign Up</button>
     </div>
 
-    <div style={{marginTop:"10px"}} className={Styles.signup}>
-    <p>Already have an account ?</p>
-    <button onClick={() => {
-      navigate("/login")
-    }}>Login</button>
-    </div>
+ {showOtp && <div>
+        <Otp id={id}/>
+    </div> }
 
     </div>
 

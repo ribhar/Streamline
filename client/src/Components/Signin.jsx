@@ -21,16 +21,20 @@ const Signin = () => {
 
     const handleSubmit = async() => {
       console.log(login,"login")
+      try {
+        const {data} = await axios.post("http://localhost:8080/auth/login",login);
 
-        const res = await axios.post("http://localhost:8080/auth/login",login);
+        let payload = data.user;
+        payload.token = data.token;
 
-        console.log(res,"res")
-
-        if(res)
-        {
-          alert("login successfull")
-          navigate("/")
-        }
+        localStorage.setItem("userInformation",JSON.stringify(payload));
+        
+        alert("login successfull")
+        navigate("/chat")
+      } catch (error) {
+        alert("Something Went Wrong")
+        console.log(error);
+      }
     }
  
  
