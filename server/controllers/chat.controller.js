@@ -5,7 +5,7 @@ exports.createGroup = async (req, res, next) => {
   if (!req.body.users || !req.body.chatName) {
     return res.status(400).send({ msg: "Please fill all fields" });
   }
-  var users = req.body.users;
+  var users = JSON.parse(req.body.users);
   if (users.length < 2)
     return res.status(400).json({ msg: "More than 2 users are allowed" });
   users.push(req.user);
@@ -83,3 +83,41 @@ exports.fetchChats = async (req, res, next) => {
     next(error);
   }
 };
+
+
+exports.renameGroup = async(req,res,next)=>{
+  try {
+    const {chatId,chatName} = req.body;
+    const updatedChat = await Chat.findByIdAndUpdate(chatId,{chatName:chatName},{new:true}).populate("users").populate("groupAdmin");
+    if(!updatedChat){
+      return res.status(404).json({msg:"Chat Not Found"})
+    }
+    return res.status(201).json(updatedChat);
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.removeFromGroup = async (req, res, next) => {
+  try {
+    const {chatId,userId} = req.body;
+    const removed = await Chat.findByIdAndUpdate(chatId,{$pull:{users:userId}},{new: true}).populate("users").populate("groupAdmin");
+    if(!removed){
+      return res.status(404).json({msg:"Chat Not Foun"})
+    }
+    return res.status(200).json(removed);
+  } catch (error) {
+    next(error);
+  }
+}
+
+exports.addToGroup = async (req, res, next) => {
+  try {
+    const {chatId,userId} = req.body;
+    const added = await Chat.findByIdAndUpdate(chatId,{$push:{users:userId}},{new:true}).populate("users").populate("groupAdmin");
+    if(!added) return res.status(404).json({msg:"Chat Not Found"});
+    return res.status(200).json(added);
+  } catch (error) {
+    next(error)
+  }
+}

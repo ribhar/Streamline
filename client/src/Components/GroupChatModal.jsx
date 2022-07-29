@@ -20,7 +20,6 @@ import UserBadgeItem from "./UserBadgeItem";
 import UserListItem from "./UserListItem";
 
 const GroupChatModal = ({ children }) => {
-  
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -29,11 +28,9 @@ const GroupChatModal = ({ children }) => {
 
   const { user, chats, setChats } = useContext(ChatContext);
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();  
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const selectedGroupHandler = (userToAdd) => {
-    
     if (selectedUsers.includes(userToAdd)) {
       toast({
         title: "User already added",
@@ -49,7 +46,6 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handleSearch = async (query) => {
-    
     setSearch(query);
     if (!query) {
       return;
@@ -58,18 +54,19 @@ const GroupChatModal = ({ children }) => {
     try {
       setLoading(true);
       const config = {
-        headers: { Authorization: `Bearer ${user.token}`}
+        headers: { Authorization: `Bearer ${user.token}` },
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
-      console.log(data, 'users search response from server');
-      
+      const { data } = await axios.get(
+        `http://localhost:8080/auth/getUserDetails?username=${search}`,
+        config
+      );
+      console.log(data.users, "users search response from server");
+
       setLoading(false);
-      setSearchResult(data);
-
+      setSearchResult(data.users);
     } catch (error) {
-
-      console.error(error.message);  
+      console.error(error.message);
       toast({
         title: "Error Occured!",
         description: "Failed to Load the Search Results",
@@ -82,11 +79,12 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handleDelete = (delUser) => {
-    setSelectedUsers(selectedUsers.filter((selectedUser) => selectedUser._id !== delUser._id));
+    setSelectedUsers(
+      selectedUsers.filter((selectedUser) => selectedUser._id !== delUser._id)
+    );
   };
 
   const submitHandler = async () => {
-
     if (!groupChatName || !selectedUsers) {
       toast({
         title: "Please fill all the feilds",
@@ -99,22 +97,24 @@ const GroupChatModal = ({ children }) => {
     }
 
     try {
+      let pya = JSON.stringify(selectedUsers.map((selectedUser) => selectedUser._id));
       const config = {
-        headers: {/* "Content-type": "application/json", */ Authorization: `Bearer ${user.token}`}//already body jsonType
+        headers: {
+         "Content-type": "application/json", Authorization: `Bearer ${user.token}`,
+        }, 
       };
-      
+
       const { data } = await axios.post(
-        `/api/chat/group`,
+        `http://localhost:8080/chat/group`,
         {
-          name: groupChatName,
-          users: JSON.stringify(selectedUsers.map((selectedUser) => selectedUser._id)), 
-          //server side req.body accepts stringify array of user id
+          chatName: groupChatName,
+          users: pya,
         },
         config
       );
-
-      setChats([data, ...chats]); //recently created chat first
-      console.log(data, 'group chat added/created respopnse');
+      // console.log(data);
+      setChats([data, ...chats]);
+      // console.log(data, "group chat added/created respopnse");
       onClose(); //modal close on success
 
       toast({
@@ -124,10 +124,8 @@ const GroupChatModal = ({ children }) => {
         isClosable: true,
         position: "bottom",
       });
-
     } catch (error) {
-      
-      console.error(error.message);  
+      console.error(error.message);
       toast({
         title: "Failed to Create the Chat!",
         description: error.response.data,
@@ -182,7 +180,8 @@ const GroupChatModal = ({ children }) => {
             {loading ? (
               // <ChatLoading />
               <div>Loading...</div>
-            ) : ( //top 4 results
+            ) : (
+              //top 4 results
               searchResult
                 ?.slice(0, 4)
                 .map((user) => (

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ChatContext from "../Context/chat-context.js";
-// import ProfileModal from "./ProfileModal";
+import ProfileModal from "./ProfileModal";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Box, Text } from "@chakra-ui/layout";
 import {
@@ -29,7 +29,7 @@ import UserListItem from "./UserListItem.jsx";
 // import ChatLoading from "../ChatLoading";
 // import NotificationBadge from "react-notification-badge";
 // import { Effect } from "react-notification-badge";
-// import { getSender } from "../../config/ChatLogics";
+// import { getSender } from "../config/ChatLogics";
 
 
 const SideDrawer = () => {
@@ -164,11 +164,11 @@ const SideDrawer = () => {
               <Avatar size="sm" cursor="pointer" name={user.name} borderColor="black" borderWidth="2px" bg="yellow.400" color="black"/>
             </MenuButton>
             <MenuList bg = "teal.600" borderColor="black" borderWidth="2px">
-              {/* <ProfileModal user={user}>
+              <ProfileModal user={user}>
                 <MenuItem fontWeight="bold" color="black" _hover={{background: "yellow.400"}}  >
                   My Profile
                 </MenuItem>{" "}
-              </ProfileModal> */}
+              </ProfileModal>
               <MenuDivider/>
               <MenuItem fontWeight="bold" color="black" onClick={logoutHandler} _hover={{background: "purple.600"}}>
                 Logout

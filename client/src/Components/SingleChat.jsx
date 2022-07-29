@@ -10,7 +10,7 @@ import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./ProfileModal";
 import ScrollableChat from "./ScrollableChat";
-// import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
+import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import ChatContext from "../Context/chat-context.js";
 // import Lottie from "react-lottie";
 // import animationData from "../animations/typing.json";
@@ -54,7 +54,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `http://localhost:8080/messages/getAllMessages/${selectedChat._id}`,
         config
       );
 
@@ -79,7 +79,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
 
-      socket.emit("stop typing", selectedChat._id);
+      // socket.emit("stop typing", selectedChat._id);
 
       try {
         const config = {
@@ -92,12 +92,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         //async func -- wont make newMessage empty instantaneously
         //ui enhancement -- input to be empty as soon as we hit ender/send
         setNewMessage("");
-
+        console.log(newMessage,selectedChat._id);
         const { data } = await axios.post(
-          "/api/message",
+          "http://localhost:8080/messages/send",
           {
             content: newMessage,
-            chatId: selectedChat,
+            chat: selectedChat._id,
           },
           config
         );
@@ -125,8 +125,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
-    socket.on("typing", () => setIsTyping(true));
-    socket.on("stop typing", () => setIsTyping(false));
+    // socket.on("typing", () => setIsTyping(true));
+    // socket.on("stop typing", () => setIsTyping(false));
 
     // eslint-disable-next-line
   }, []);
@@ -145,17 +145,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
-      if ( !selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-
-        // if chat is not selected or doesn't match current chat
-        if (!notification.includes(newMessageRecieved)) {
-          setNotification([newMessageRecieved, ...notification]);
-          setFetchAgain(!fetchAgain); //updating our chats in our my chats on newMessageRecieved
-          console.log(notification, "notification bell-icon check");
-        }
-      } else {
         setMessages([...messages, newMessageRecieved]);
-      }
     });
   });
 
@@ -167,21 +157,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     if (!typing) {
       setTyping(true);
-      socket.emit("typing", selectedChat._id);
+      // socket.emit("typing", selectedChat._id);
     }
 
     //debounce/throttle function
-    let lastTypingTime = new Date().getTime();
-    var timerLength = 3000;
+    // let lastTypingTime = new Date().getTime();
+    // var timerLength = 3000;
 
-    setTimeout(() => {
-      var timeNow = new Date().getTime();
-      var timeDiff = timeNow - lastTypingTime;
-      if (timeDiff >= timerLength && typing) {
-        socket.emit("stop typing", selectedChat._id);
-        setTyping(false);
-      }
-    }, timerLength);
+    // setTimeout(() => {
+    //   var timeNow = new Date().getTime();
+    //   var timeDiff = timeNow - lastTypingTime;
+    //   if (timeDiff >= timerLength && typing) {
+    //     socket.emit("stop typing", selectedChat._id);
+    //     setTyping(false);
+    //   }
+    // }, timerLength);
   };
 
   return (
@@ -194,12 +184,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             px={2}
             w="100%"
             fontFamily="Work sans"
-            d="flex"
+            display="flex"
             justifyContent={{ base: "space-between" }}
             alignItems="center"
           >
             <IconButton
-              d={{ base: "flex", md: "none" }}
+              display={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
@@ -211,16 +201,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             ) : (
               <>
                 {selectedChat.chatName.toUpperCase()}
-                {/* <UpdateGroupChatModal
+                <UpdateGroupChatModal
                   fetchAgain={fetchAgain}
                   setFetchAgain={setFetchAgain}
                   fetchMessages={fetchMessages}
-                /> */}
+                />
               </>
             )}
           </Text>
           <Box
-            d="flex"
+            display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
@@ -257,7 +247,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     height={40}
                     width={50}
                     style={{ marginBottom: 15, marginLeft: 0 }}
-                  /> */}"type"
+                  /> */}"typing"
                 </div>
               ) : (
                 <></>
@@ -273,7 +263,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Box>
         </>
       ) : (
-        <Box d="flex" alignItems="center" justifyContent="center" h="100%">
+        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
             Click on a user to start chatting
           </Text>

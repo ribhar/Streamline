@@ -4,7 +4,7 @@ const Chat = require("../models/chat.model");
 
 exports.getAllMessages = async(req, res,next)=>{
     try {
-        const messages = await Message.find({chat: req.params.chatId}).populate("sender","name email").populate("chat");
+        const messages = await Message.find({chat: req.params.chatId}).populate("sender","username email").populate("chat");
         res.status(200).json(messages);
     } catch (error) {
         next(error)
