@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { Stack, HStack, VStack } from "@chakra-ui/react";
 
-const Otp = () => {
+const Otp = ({id}) => {
   const [otp1, setOtp1] = useState("");
   const [otp2, setOtp2] = useState("");
   const [otp3, setOtp3] = useState("");
@@ -26,23 +26,27 @@ const Otp = () => {
   const [status, setStatus] = useState();
   //   const [resendData,setResendData] = useState([])
 
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const handleSubmit = async () => {
     const otp = "" + otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
     console.log(otp, "otp");
 
     try {
-      const res = await axios.post(
-        `http://localhost:8080/auth/checkOtp/${id}`,
-        { otp: otp }
-      );
+
+      const {data} = await axios.post(`http://localhost:8080/auth/checkOtp/${id}`,{otp:otp});
+            
+        let payload = data.user;
+        payload.token = data.token;
+
+        localStorage.setItem("userInformation",JSON.stringify(payload));
+      
 
       // console.log(res.data.token,"res")
 
-      var token = res.data.token;
-      if (res) {
-        localStorage.setItem("token", JSON.stringify(token));
+    
+      if (data) {
+       
         setStatus(true);
         // alert("user registered successfully")
 
@@ -91,16 +95,17 @@ const Otp = () => {
     return (
       <>
         <Stack spacing={3}>
-          <Alert status="error" width="200px" margin="auto">
+          <Alert status="error" width="480px" height='45px' marginTop="-426px">
             <AlertIcon />
-            Enter a valid OTP
+            Please enter a valid OTP
           </Alert>
         </Stack>
 
         <div className={Styles.mainOtp}>
-          <div>
-            <h2 className={Styles.div2}>Enter OTP</h2>
-          </div>
+
+            <div>
+                <p style={{textAlign:'center',color:'teal',fontWeight:'bold'}}>Enter OTP</p>
+            </div>
 
           <div style={{ marginTop: "12px" }} className={Styles.otpinput}>
             <HStack>
@@ -138,8 +143,8 @@ const Otp = () => {
           <div className={Styles.resend}>
             <h1>00:{counter}</h1>
 
-            <div className={Styles.reqbtn}>
-              <button onClick={resend}>Request OTP</button>
+            <div>
+              <button  className={Styles.reqbtn} onClick={resend}>Request OTP</button>
             </div>
           </div>
         </div>
@@ -150,59 +155,20 @@ const Otp = () => {
   if (status === true) {
     return (
       <>
+      <div style={{display:'flex'}}>
         <Stack spacing={3}>
-          <Alert status="success" variant="subtle" width="200px" margin="auto">
+          <Alert status="success" variant="subtle" height='50px' width="400px" marginTop="-430px">
             <AlertIcon />
             Login Successful
           </Alert>
         </Stack>
-        <h1
-          className={Styles.home}
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          go to home
-        </h1>
-        <div className={Styles.mainOtp}>
-          <div>
-            <h2 className={Styles.div2}>Enter OTP</h2>
-          </div>
-
-          <div style={{ marginTop: "12px" }} className={Styles.otpinput}>
-            <HStack>
-              <PinInput>
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp1(e.target.value)}
-                />
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp2(e.target.value)}
-                />
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp3(e.target.value)}
-                />
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp4(e.target.value)}
-                />
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp5(e.target.value)}
-                />
-                <PinInputField
-                  style={{ width: "90px" }}
-                  onChange={(e) => setOtp6(e.target.value)}
-                />
-              </PinInput>
-            </HStack>
-          </div>
-          <div className={Styles.signup}>
-            <button onClick={handleSubmit}>Verify</button>
-          </div>
+        <div className={Styles.home1} >
+          <h1 style={{marginTop:'10px',fontWeight:'bold'}} onClick={() => {
+            navigate("/chat");
+          }}>OK</h1>
         </div>
+        </div>
+     
       </>
     );
   }
@@ -211,7 +177,7 @@ const Otp = () => {
     <>
       <div className={Styles.mainOtp}>
         <div>
-          <h2 className={Styles.div2}>Enter OTP</h2>
+          <p style={{textAlign:'center',color:'teal',fontWeight:'bold'}}>Enter OTP</p>
         </div>
 
         <div style={{ marginTop: "12px" }} className={Styles.otpinput}>
@@ -251,8 +217,8 @@ const Otp = () => {
         <div className={Styles.resend}>
           <h1>00:{counter}</h1>
 
-          <div className={Styles.reqbtn}>
-            <button onClick={resend}>Request OTP</button>
+          <div >
+            <button className={Styles.reqbtn} onClick={resend}>Request OTP</button>
           </div>
         </div>
       </div>

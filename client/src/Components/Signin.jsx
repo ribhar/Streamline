@@ -27,11 +27,18 @@ const Signin = () => {
     console.log(login, "login");
 
     try {
-      const res = await axios.post("http://localhost:8080/auth/login", login);
+      // const res = await axios.post("http://localhost:8080/auth/login", login);
 
-      console.log(res, "res");
+      // console.log(res, "res");
 
-      if (res) {
+      const {data} = await axios.post("http://localhost:8080/auth/login",login);
+
+      let payload = data.user;
+      payload.token = data.token;
+
+      localStorage.setItem("userInformation",JSON.stringify(payload));
+
+      if (data) {
         setStatus(true);
         // alert("login successfull")
       }
@@ -43,23 +50,26 @@ const Signin = () => {
   if (status === true) {
     return (
       <>
+      <div style={{display:'flex'}}>
         <Stack spacing={3}>
-          <Alert status="success" variant="subtle" width="200px" margin="auto">
+          <Alert status="success" variant="subtle" height='50px' width="400px" marginTop="-140px">
             <AlertIcon />
             Login Successful
           </Alert>
         </Stack>
-        <h1
-          className={Styles.home}
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          go to home
-        </h1>
+       
+        <div className={Styles.home} >
+          <h1 style={{marginTop:'10px',fontWeight:'bold'}} onClick={() => {
+            navigate("/chat");
+          }}>OK</h1>
+        </div>
+      </div>
+
         <div className={Styles.main1}>
+        <h2 className={Styles.div2}>Login</h2>
           <div className={Styles.div}>
-            <h2 className={Styles.div2}>Login</h2>
+            
+            <h3>Email</h3>
             <input
               className={Styles.input}
               type="text"
@@ -70,6 +80,7 @@ const Signin = () => {
           </div>
 
           <div className={Styles.div}>
+          <h3>Password</h3>
             <input
               className={Styles.input}
               type="password"
@@ -91,14 +102,16 @@ const Signin = () => {
     return (
       <>
         <Stack spacing={3}>
-          <Alert status="error" width="200px" margin="auto">
+          <Alert status="error" width="480px" height='50px' marginTop="-140px" >
             <AlertIcon />
             Wrong Credentials
           </Alert>
         </Stack>
         <div className={Styles.main1}>
+        <h2 className={Styles.div2}>Login</h2>
           <div className={Styles.div}>
-            <h2 className={Styles.div2}>Login</h2>
+           
+            <h3>Email</h3>
             <input
               className={Styles.input}
               type="text"
@@ -109,6 +122,7 @@ const Signin = () => {
           </div>
 
           <div className={Styles.div}>
+          <h3>Password</h3>
             <input
               className={Styles.input}
               type="password"
@@ -128,8 +142,10 @@ const Signin = () => {
   return (
     <>
       <div className={Styles.main1}>
+      <h2 className={Styles.div2}>Login</h2>
         <div className={Styles.div}>
-          <h2 className={Styles.div2}>Login</h2>
+         
+          <h3>Email</h3>
           <input
             className={Styles.input}
             type="text"
@@ -140,6 +156,7 @@ const Signin = () => {
         </div>
 
         <div className={Styles.div}>
+        <h3>Password</h3>
           <input
             className={Styles.input}
             type="password"

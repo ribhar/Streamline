@@ -6,11 +6,13 @@ import Otp from '../Components/Otp'
 import JoinCreateTeam from '../Pages/JoinCreateTeam'
 import HomePage from '../Pages/HomePage'
 import ChatPage from '../Pages/ChatPage'
+import ProfileModal from '../Components/ProfileModal'
 
 const Mainroute = () => {
   return (
     <div className="bg-teal-800 h-[120vh]">
       <Routes>
+            {/* <Route path="/signup" element = {<ProfileModal/>}/> */}
             <Route path="/" element={<HomePage/>}/>
             <Route path="/chat" element={<ChatPage/>}/>
       </Routes>
