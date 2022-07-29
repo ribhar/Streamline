@@ -12,6 +12,11 @@ import {
 } from '@mantine/core';
 import { useState, useRef, useEffect } from 'react';
 import {Trash } from 'tabler-icons-react';
+import {
+    
+    Box,
+   
+  } from "@chakra-ui/react";
 
 import {MantineProvider} from '@mantine/core';
 
@@ -94,9 +99,12 @@ export default function Todo() {
 	// console.log(title)
 
 	return (
+        <Box bg="#2b5f5a" w="100%" p={4} borderRadius="lg" paddingTop="50px" >
 		<div style={{width:'500px',margin:'auto',boxSizing:'border-box'
 		,padding:"10px",boxShadow:"rgba(149, 157, 165, 0.2) 0px 8px 24px",
 		backgroundColor:'teal'}}>
+
+       
 		
         <h1 style={{textAlign:"center",color:"white",fontWeight:"bold"}}>Project</h1>
 			<MantineProvider
@@ -234,6 +242,10 @@ export default function Todo() {
 				</div>
 			</MantineProvider>
 		
-		</div>
+           
+            
+        </div>
+        </Box>
+
 	);
 }
