@@ -23,15 +23,6 @@ const Signin = () => {
     setLogin({ ...login, [input]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    console.log(login, "login");
-
-    try {
-      // const res = await axios.post("http://localhost:8080/auth/login", login);
-
-      // console.log(res, "res");
-
-
     const handleSubmit = async() => {
       console.log(login,"login")
       try {
@@ -177,6 +168,6 @@ const Signin = () => {
       </div>
     </>
   );
-};
+}
 
-export default Signin;
+export default Signin
