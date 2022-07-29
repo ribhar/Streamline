@@ -13,7 +13,7 @@ const Mainroute = () => {
   return (
     <div className="bg-teal-800 h-[120vh]">
       <Routes>
-            <Route path="todo" element={<Todo/>}/>
+            <Route path="/todo" element={<Todo/>}/>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/chat" element={<ChatPage/>}/>
       </Routes>

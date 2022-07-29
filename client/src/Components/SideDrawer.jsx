@@ -130,6 +130,10 @@ const SideDrawer = () => {
     }
   };
 
+  const handleTodo = ()=>{
+    navigate("/todo")
+  }
+
   return (
     <React.Fragment>
       <Box
@@ -143,15 +147,25 @@ const SideDrawer = () => {
         bg="teal.600"
         color="black"
       >
+      <div>
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" bg ='blue.700' onClick={onOpen} color="white"
             _hover={{ background: "purple.800" }} _active={{ background: "purple.800"}}>
               <i className="fas fa-search"></i>
-              <Text d={{ base: "none", md: "flex" }} px={4} fontWeight="bold">
+              <Text display={{ base: "none", md: "flex" }} px={4} fontWeight="bold">
                 Search User
               </Text>
           </Button>
         </Tooltip>
+        <Button variant="ghost" bg ='blue.700' color="white" marginLeft={"10px"} onClick={handleTodo}
+            _hover={{ background: "purple.800" }} _active={{ background: "purple.800"}}>
+              {/* <i className="fas fa-search"></i> */}
+              <Text display={{ base: "none", md: "flex" }} px={4} fontWeight="bold">
+                Assign Tasks
+              </Text>
+        </Button>
+      </div>
+     
 
         <Text fontSize="3xl" fontFamily="Work sans bold" fontWeight='bold' color="gray.200" >
           Trinity

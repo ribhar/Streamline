@@ -19,6 +19,7 @@ import {
   } from "@chakra-ui/react";
 
 import {MantineProvider} from '@mantine/core';
+import GroupChatModal from '../Components/GroupChatModal';
 
 
 export default function Todo() {
@@ -31,6 +32,25 @@ export default function Todo() {
 
 	const taskTitle = useRef('');
 	const taskSummary = useRef('');
+
+	const [isHovering, setIsHovering] = useState(false);
+	const [isHovering2, setIsHovering2] = useState(false);
+
+	const handleMouseEnter = () => {
+	  setIsHovering(true);
+	};
+  
+	const handleMouseLeave = () => {
+	  setIsHovering(false);
+	};
+
+	const handleMouseEnter2 = () => {
+	  setIsHovering2(true);
+	};
+  
+	const handleMouseLeave2 = () => {
+	  setIsHovering2(false);
+	};
 
 	function createTask() {
 		setTasks([
@@ -91,22 +111,16 @@ export default function Todo() {
 		setState(true)
 
 	}
-	console.log(sub,"sub")
-	console.log(state)
-	
-
-	// const title = localStorage.getItem("title")
-	// console.log(title)
 
 	return (
-        <Box bg="#2b5f5a" w="100%" p={4} borderRadius="lg" paddingTop="50px" >
+        <Box w="100%" p={4} borderRadius="lg" paddingTop="50px" className="bg-teal-800">
 		<div style={{width:'500px',margin:'auto',boxSizing:'border-box'
 		,padding:"10px",boxShadow:"rgba(149, 157, 165, 0.2) 0px 8px 24px",
-		backgroundColor:'teal'}}>
+		backgroundColor:'white',borderRadius:"10px"}}>
 
        
 		
-        <h1 style={{textAlign:"center",color:"white",fontWeight:"bold"}}>Project</h1>
+        <h1 style={{textAlign:"center",color:"black",fontWeight:"bold"}}>Project</h1>
 			<MantineProvider
 				theme={{ defaultRadius: 'md' }}
 				withGlobalStyles
@@ -155,13 +169,16 @@ export default function Todo() {
 						{state === false ? (
 							<>
 							<input style={{ height:"40px",borderRadius:'35px',width:'280px',
-							border:'1px solid white',
+							border:'1px solid gray',
 							boxSizing:"border-box" ,padding:'10px'}} 
 							onChange={handleChange} placeholder='Enter Project Title Here'/>
 							<button 
-							style={{color:'teal',backgroundColor:"white",marginLeft:'50px',
-							border:'1px solid white',borderRadius:'25px',width:"100px",height:'40px'}} 
-							onClick={handleSub}>Add
+							style={{color: isHovering?'white':'teal',backgroundColor: isHovering?"teal":"white",marginLeft:'50px',
+							border:'1px solid teal',borderRadius:'25px',width:"100px",height:'40px'}} 
+							onClick={handleSub}
+							onMouseEnter={handleMouseEnter}
+          					onMouseLeave={handleMouseLeave}
+		  					>Add
 							</button>	
 							</>
 								):(
@@ -172,7 +189,7 @@ export default function Todo() {
 									sx={theme => ({
 										fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 										fontWeight: 400,
-										color:'white'
+										color:'black'
 									})}>
 									Title : {sub}
 								</Title>		
@@ -187,15 +204,14 @@ export default function Todo() {
 									return (
 										<Card withBorder key={index} mt={'sm'}>
 											<Group position={'apart'}>
-												<Text weight={'bold'}>{task.title}</Text>
+												<Text  weight={'bold'}>{task.title}</Text>
 												<div style={{marginRight:'6px'}}>
 												<ActionIcon
 													onClick={() => {
 														deleteTask(index);
 													}}
 													color={'red'}
-													variant={'transparent'}
-													
+													variant={'transparent'}	
 													>
 												    
 													<Trash />
@@ -229,15 +245,19 @@ export default function Todo() {
 								"A goal without a plan is just a wish !"
 							</Text>
 						)}
-						<Button style={{color:'teal',
-						backgroundColor:'white',borderRadius:'25px',height:'40px'}}
+						<Button style={{color:isHovering2?'white':'teal', border:'1px solid teal',
+						backgroundColor:isHovering2?'teal':'white',borderRadius:'25px',height:'40px'}}
 							onClick={() => {
 								setOpened(true);
 							}}
 							fullWidth
-							mt={'md'}>
+							mt={'md'}
+							onMouseEnter={handleMouseEnter2}
+          					onMouseLeave={handleMouseLeave2}
+							>
 							Start Planning
 						</Button>
+						
 					</Container>
 				</div>
 			</MantineProvider>

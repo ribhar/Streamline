@@ -5,7 +5,7 @@
   font-size: 18px;
   margin: auto;
   width: 500px;
-  background-color:rgb(235,248,255);
+  background-color:white;
   color: black;
   margin-top: -20px;
  
@@ -17,17 +17,18 @@
     font-size: 18px;
     margin: auto;
     width: 500px;
-    background-color:rgb(235,248,255);
+    background-color:white;
     color: black;
 
   }
 .input {
-  background-color: white;
+  background-color: #e8f3f5;
   width: 470px;
   border-radius: 25px;
   font-size: 16px;
   /* margin-top: 10px; */
   padding: 7px;
+  outline: none;
 }
 .signup > button {
   background-color: #2c7a7b;

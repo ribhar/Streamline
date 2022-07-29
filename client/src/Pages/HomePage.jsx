@@ -25,7 +25,7 @@ const HomePage = () => {
 
   return (
     <Container maxW="xl" centerContent >
-      <Box bg="blue.50" w="100%" p={4} borderRadius="lg" borderColor="black" borderWidth="1px" margin = "3.2rem 0 1rem 0">
+      <Box bg="white" w="100%" p={4} borderRadius="lg" borderColor="black" borderWidth="1px" margin = "3.2rem 0 1rem 0">
         <Tabs isFitted variant="soft-rounded" colorScheme="cyan" >
           <TabList mb="1em">
             <Tab fontWeight="bold">Login</Tab>
