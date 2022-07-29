@@ -92,12 +92,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         //async func -- wont make newMessage empty instantaneously
         //ui enhancement -- input to be empty as soon as we hit ender/send
         setNewMessage("");
-
+        console.log(newMessage,selectedChat._id);
         const { data } = await axios.post(
-          "/api/message",
+          "http://localhost:8080/messages/send",
           {
             content: newMessage,
-            chatId: selectedChat,
+            chat: selectedChat._id,
           },
           config
         );
@@ -199,7 +199,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             alignItems="center"
           >
             <IconButton
-              d={{ base: "flex", md: "none" }}
+              display={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
@@ -210,7 +210,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </>
             ) : (
               <>
-              {console.log(selectedChat)}
                 {selectedChat.chatName.toUpperCase()}
                 <UpdateGroupChatModal
                   fetchAgain={fetchAgain}
@@ -221,7 +220,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             )}
           </Text>
           <Box
-            d="flex"
+            display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
@@ -258,7 +257,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     height={40}
                     width={50}
                     style={{ marginBottom: 15, marginLeft: 0 }}
-                  /> */}"type"
+                  /> */}"typing"
                 </div>
               ) : (
                 <></>
@@ -274,7 +273,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Box>
         </>
       ) : (
-        <Box d="flex" alignItems="center" justifyContent="center" h="100%">
+        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
             Click on a user to start chatting
           </Text>
