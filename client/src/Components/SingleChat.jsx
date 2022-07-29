@@ -62,7 +62,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(false);
       console.log(data, "fetched messsages of the selected chat data");
 
-      // socket.emit("join chat", selectedChat._id);
+      socket.emit("join chat", selectedChat._id);
     } catch (error) {
       console.log(error.message);
       toast({
@@ -103,7 +103,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         );
 
         //setNewMessage("");
-        // socket.emit("new message", data);
+        socket.emit("new message", data);
 
         setMessages([...messages, data]);
         console.log(data, "sent message response data");
@@ -121,15 +121,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
-  // useEffect(() => {
-  //   socket = io(ENDPOINT);
-  //   socket.emit("setup", user);
-  //   socket.on("connected", () => setSocketConnected(true));
-  //   socket.on("typing", () => setIsTyping(true));
-  //   socket.on("stop typing", () => setIsTyping(false));
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connected", () => setSocketConnected(true));
+    // socket.on("typing", () => setIsTyping(true));
+    // socket.on("stop typing", () => setIsTyping(false));
 
-  //   // eslint-disable-next-line
-  // }, []);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     fetchMessages();
@@ -143,21 +143,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   //console.log(notification, 'notification Bellicon');
 
-  // useEffect(() => {
-  //   socket.on("message recieved", (newMessageRecieved) => {
-  //     if ( !selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
-
-  //       // if chat is not selected or doesn't match current chat
-  //       if (!notification.includes(newMessageRecieved)) {
-  //         setNotification([newMessageRecieved, ...notification]);
-  //         setFetchAgain(!fetchAgain); //updating our chats in our my chats on newMessageRecieved
-  //         console.log(notification, "notification bell-icon check");
-  //       }
-  //     } else {
-  //       setMessages([...messages, newMessageRecieved]);
-  //     }
-  //   });
-  // });
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+        setMessages([...messages, newMessageRecieved]);
+    });
+  });
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -167,21 +157,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     if (!typing) {
       setTyping(true);
-      socket.emit("typing", selectedChat._id);
+      // socket.emit("typing", selectedChat._id);
     }
 
     //debounce/throttle function
-    let lastTypingTime = new Date().getTime();
-    var timerLength = 3000;
+    // let lastTypingTime = new Date().getTime();
+    // var timerLength = 3000;
 
-    setTimeout(() => {
-      var timeNow = new Date().getTime();
-      var timeDiff = timeNow - lastTypingTime;
-      if (timeDiff >= timerLength && typing) {
-        socket.emit("stop typing", selectedChat._id);
-        setTyping(false);
-      }
-    }, timerLength);
+    // setTimeout(() => {
+    //   var timeNow = new Date().getTime();
+    //   var timeDiff = timeNow - lastTypingTime;
+    //   if (timeDiff >= timerLength && typing) {
+    //     socket.emit("stop typing", selectedChat._id);
+    //     setTyping(false);
+    //   }
+    // }, timerLength);
   };
 
   return (
