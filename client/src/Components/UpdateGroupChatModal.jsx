@@ -90,7 +90,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       );
 
       setSelectedChat(data);
-      setFetchAgain(!fetchAgain); //window.location.reload()
+      setFetchAgain(!fetchAgain); 
       setRenameLoading(false);
 
     } catch (error) {
@@ -104,7 +104,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       });
       setRenameLoading(false);
     }
-    setGroupChatName(""); //reseting the new name field 
+    setGroupChatName(""); 
   };
 
   const handleAddUser = async (userToBeAdded) => {
@@ -120,7 +120,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       return;
     }
 
-    if (selectedChat.groupAdmin._id !== user._id) { //admin is not loggedIn user clause
+    if (selectedChat.groupAdmin._id !== user._id) { 
       toast({
         title: "Only admins can add someone!",
         status: "error",
@@ -198,10 +198,9 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       );
 
       userToBeRemoved._id === user._id ? setSelectedChat() : setSelectedChat(data); 
-      //leaveGroup clause //self UserBadgeItem cross
 
       setFetchAgain(!fetchAgain);
-      fetchMessages(); //prop passsed down from singlechat //opt 
+      fetchMessages(); 
       setLoading(false);
     } catch (error) {
         

@@ -4,7 +4,6 @@ import { Box, Text } from "@chakra-ui/layout";
 import "./styles.css";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics.js";
-//import { useHelper } from '../config/helper-hook';
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -12,8 +11,7 @@ import ProfileModal from "./ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import ChatContext from "../Context/chat-context.js";
-// import Lottie from "react-lottie";
-// import animationData from "../animations/typing.json";
+
 
 import io from "socket.io-client";
 
@@ -32,16 +30,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const toast = useToast();
 
   const { selectedChat, setSelectedChat, user, notification, setNotification } = useContext(ChatContext);
-  //console.log(selectedChat, "selectedChat in chatBox");
-
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: animationData,
-  //   rendererSettings: {
-  //     preserveAspectRatio: "xMidYMid slice",
-  //   },
-  // };
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -79,8 +67,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
 
-      // socket.emit("stop typing", selectedChat._id);
-
       try {
         const config = {
           headers: {
@@ -89,8 +75,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
 
-        //async func -- wont make newMessage empty instantaneously
-        //ui enhancement -- input to be empty as soon as we hit ender/send
         setNewMessage("");
         console.log(newMessage,selectedChat._id);
         const { data } = await axios.post(
@@ -102,7 +86,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           config
         );
 
-        //setNewMessage("");
         socket.emit("new message", data);
 
         setMessages([...messages, data]);
@@ -125,10 +108,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
-    // socket.on("typing", () => setIsTyping(true));
-    // socket.on("stop typing", () => setIsTyping(false));
-
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -141,8 +120,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     // eslint-disable-next-line
   }, [selectedChat]);
 
-  //console.log(notification, 'notification Bellicon');
-
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
         setMessages([...messages, newMessageRecieved]);
@@ -152,26 +129,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
 
-    //typing animation code
     if (!socketConnected) return;
 
     if (!typing) {
       setTyping(true);
-      // socket.emit("typing", selectedChat._id);
     }
-
-    //debounce/throttle function
-    // let lastTypingTime = new Date().getTime();
-    // var timerLength = 3000;
-
-    // setTimeout(() => {
-    //   var timeNow = new Date().getTime();
-    //   var timeDiff = timeNow - lastTypingTime;
-    //   if (timeDiff >= timerLength && typing) {
-    //     socket.emit("stop typing", selectedChat._id);
-    //     setTyping(false);
-    //   }
-    // }, timerLength);
   };
 
   return (
@@ -242,12 +204,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             >
               {istyping ? (
                 <div>
-                  {/* <Lottie
-                    options={defaultOptions}
-                    height={40}
-                    width={50}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
-                  /> */}"typing"
+                  "typing"
                 </div>
               ) : (
                 <></>

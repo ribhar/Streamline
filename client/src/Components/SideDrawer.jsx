@@ -26,10 +26,6 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 import { Input, Spinner } from "@chakra-ui/react";
 import UserListItem from "./UserListItem.jsx";
-// import ChatLoading from "../ChatLoading";
-// import NotificationBadge from "react-notification-badge";
-// import { Effect } from "react-notification-badge";
-// import { getSender } from "../config/ChatLogics";
 
 
 const SideDrawer = () => {
@@ -94,7 +90,6 @@ const SideDrawer = () => {
   
 
   const accessChatCreateChat = async (userId) => {
-    //console.log(userId); id of selected user
 
     try {
       setLoadingChat(true);
@@ -105,17 +100,15 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.post(`http://localhost:8080/chat`, { userId }, config);
-      // console.log(data);
 
       if (!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]); 
-      //already existing check clause //newly created chat above the rest
 
       setSelectedChat(data);
 
       console.log(data, 'access new/existing chat response data');
 
       setLoadingChat(false);
-      onClose(); //drawer close afterwards
+      onClose();
     } catch (error) {
 
       console.log(error.message);
@@ -167,7 +160,7 @@ const SideDrawer = () => {
       </div>
      
 
-        <Text fontSize="3xl" fontFamily="Work sans bold" fontWeight='bold' color="gray.200" >
+        <Text cursor="pointer" onClick={()=>{navigate("/chat")}} fontSize="3xl" fontFamily="Work sans bold" fontWeight='bold' color="gray.200" >
           Trinity
         </Text>
 

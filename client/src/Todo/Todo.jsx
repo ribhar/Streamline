@@ -20,6 +20,7 @@ import {
 
 import {MantineProvider} from '@mantine/core';
 import GroupChatModal from '../Components/GroupChatModal';
+import SideDrawer from '../Components/SideDrawer';
 
 
 export default function Todo() {
@@ -113,6 +114,8 @@ export default function Todo() {
 	}
 
 	return (
+		<>
+		<SideDrawer/>
         <Box w="100%" p={4} borderRadius="lg" paddingTop="50px" className="bg-teal-800">
 		<div style={{width:'500px',margin:'auto',boxSizing:'border-box'
 		,padding:"10px",boxShadow:"rgba(149, 157, 165, 0.2) 0px 8px 24px",
@@ -266,6 +269,6 @@ export default function Todo() {
             
         </div>
         </Box>
-
+		</>
 	);
 }

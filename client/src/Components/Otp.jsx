@@ -24,9 +24,6 @@ const Otp = ({id}) => {
   const [otp6, setOtp6] = useState("");
   const navigate = useNavigate();
   const [status, setStatus] = useState();
-  //   const [resendData,setResendData] = useState([])
-
-  // const { id } = useParams();
 
   const handleSubmit = async () => {
     const otp = "" + otp1 + otp2 + otp3 + otp4 + otp5 + otp6;
@@ -40,25 +37,17 @@ const Otp = ({id}) => {
         payload.token = data.token;
 
         localStorage.setItem("userInformation",JSON.stringify(payload));
-      
-
-      // console.log(res.data.token,"res")
 
     
       if (data) {
        
         setStatus(true);
-        // alert("user registered successfully")
-
-        // navigate("/")
       }
     } catch (err) {
-      // alert("Inavlid Otp")
       setStatus(false);
     }
   };
 
-  ///the counter
   const [counter, setCounter] = useState(30);
 
   useEffect(() => {
@@ -66,15 +55,7 @@ const Otp = ({id}) => {
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
     return () => clearInterval(timer);
   }, [counter]);
-  //   console.log(timer, "count");
 
-  //resend
-  // useEffect(() => {
-  //     const Reg = JSON.stringify(localStorage.getItem('register'))
-  //     console.log(Reg,"reg")
-  //     resend(Reg)
-
-  // },[])
 
   const resend = async (Reg) => {
     // console.log(Reg,"rr")

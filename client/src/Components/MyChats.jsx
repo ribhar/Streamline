@@ -5,16 +5,13 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import ChatContext from '../Context/chat-context';
 import { getSender } from "../config/ChatLogics.js";
-// import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./GroupChatModal";
 import { Button } from "@chakra-ui/react";
-//import { useHelper } from '../config/helper-hook';
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = useContext(ChatContext);
-  //const {getSender}=useHelper();
 
   const toast = useToast();
   
@@ -46,12 +43,9 @@ const MyChats = ({ fetchAgain }) => {
 
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInformation"))); //chatLogics 
+    setLoggedUser(JSON.parse(localStorage.getItem("userInformation"))); 
     fetchChats();
-    // eslint-disable-next-line
   }, [fetchAgain]);
-  //fetching chats again witht the updated list of all of our chats...
-  //--when we leave a group our updated list of chats needs to be fetched again
 
   return (
     <Box

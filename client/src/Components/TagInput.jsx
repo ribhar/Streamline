@@ -35,15 +35,6 @@ const TagInput = () => {
     }
   return (
     <div className='relative shadow-lg shadow-teal-900/20  px-2 py-1  rounded-xl w-[200px] bg-white flex items center flex-wrap gap-2'>
-      {/*
-      <div className='bg-gray-200 inline-block px-3 rounded-xl mr-2'>
-        <span>hello</span>
-        <span className='ml-2 inline-flex rounded-xl cursor-pointer'>
-            <div className=' flex '>
-                <div className=''>&times;</div>
-            </div>
-        </span>
-      </div> */}
       {tags.map((tag,index)=>(
         <div className='bg-gray-200 inline-block px-3 rounded-xl mr-2' key={index}>
         <span>{tag}</span>
