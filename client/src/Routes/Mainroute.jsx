@@ -7,12 +7,13 @@ import JoinCreateTeam from '../Pages/JoinCreateTeam'
 import HomePage from '../Pages/HomePage'
 import ChatPage from '../Pages/ChatPage'
 import ProfileModal from '../Components/ProfileModal'
+import Todo from '../Todo/Todo'
 
 const Mainroute = () => {
   return (
     <div className="bg-teal-800 h-[120vh]">
       <Routes>
-            {/* <Route path="/signup" element = {<ProfileModal/>}/> */}
+            <Route path="todo" element={<Todo/>}/>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/chat" element={<ChatPage/>}/>
       </Routes>
