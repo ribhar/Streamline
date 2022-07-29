@@ -11,6 +11,7 @@ import ProfileModal from "./ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import ChatContext from "../Context/chat-context.js";
+import Robo from '../assets/robot.gif';
 
 
 import io from "socket.io-client";
@@ -29,7 +30,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   const toast = useToast();
 
-  const { selectedChat, setSelectedChat, user, notification, setNotification } = useContext(ChatContext);
+  const { selectedChat, setSelectedChat, user} = useContext(ChatContext);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -220,9 +221,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Box>
         </>
       ) : (
-        <Box display="flex" alignItems="center" justifyContent="center" h="100%">
+        <Box display="flex" flexDir="column" alignItems="center" justifyContent="center" h="100%">
+        <div>
+          <img src={Robo} alt="robo" />
+        </div>
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
-            Click on a user to start chatting
+            {`Welcome ${user.username}, click on a user to start chatting`}
           </Text>
         </Box>
       )}
