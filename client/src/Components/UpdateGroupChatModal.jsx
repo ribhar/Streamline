@@ -18,15 +18,15 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState, useContext } from "react";
-import ChatContext from "../../Context/chat-context";
-import UserBadgeItem from "../userAvatar/UserBadgeItem";
-import UserListItem from "../userAvatar/UserListItem";
+import ChatContext from "../Context/chat-context.js";
+import UserBadgeItem from "./UserBadgeItem";
+import UserListItem from "./UserListItem";
 
 const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [groupChatName, setGroupChatName] = useState();
+  const [groupChatName, setGroupChatName] = useState("");
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -50,11 +50,11 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
         headers: { Authorization: `Bearer ${user.token}`}
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(`http://localhost:8080/auth/getUserDetails?username=${search}`, config);
 
-      console.log(data, 'user search response');
+      console.log(data.users, 'user search response');
       setLoading(false);
-      setSearchResult(data);
+      setSearchResult(data.users);
 
     } catch (error) {
       
@@ -73,7 +73,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
 
   const handleRename = async () => {
     if (!groupChatName) return;
-
+    console.log(selectedChat._id,groupChatName);
     try {
       setRenameLoading(true);
       const config = { 
@@ -81,16 +81,14 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
         };
 
       const { data } = await axios.put(
-        `/api/chat/rename`,
+        `http://localhost:8080/chat/renameGroup`,
         {
           chatId: selectedChat._id,
-          chatName: groupChatName, //local state
+          chatName: groupChatName, 
         },
         config
       );
 
-      console.log(data._id, data, "renaming group chat resposne");
-      // setSelectedChat("");
       setSelectedChat(data);
       setFetchAgain(!fetchAgain); //window.location.reload()
       setRenameLoading(false);
@@ -140,7 +138,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       };
 
       const { data } = await axios.put(
-        `/api/chat/groupadd`,
+        `http://localhost:8080/chat/addToGroup`,
         {
           chatId: selectedChat._id,
           userId: userToBeAdded._id,
@@ -191,7 +189,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       };
 
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        `http://localhost:8080/chat/removeFromGroup`,
         {
           chatId: selectedChat._id,
           userId: userToBeRemoved._id,

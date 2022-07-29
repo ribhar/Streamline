@@ -23,6 +23,7 @@ const Signin = () => {
       console.log(login,"login")
       try {
         const {data} = await axios.post("http://localhost:8080/auth/login",login);
+        console.log(data)
 
         let payload = data.user;
         payload.token = data.token;
