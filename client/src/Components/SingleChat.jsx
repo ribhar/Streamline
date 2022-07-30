@@ -16,7 +16,7 @@ import Robo from '../assets/robot.gif';
 
 import io from "socket.io-client";
 
-const ENDPOINT = "http://localhost:8080"; 
+const ENDPOINT = "https://chatwithtrinity.herokuapp.com/"; 
 
 var socket, selectedChatCompare;
 
@@ -43,7 +43,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `http://localhost:8080/messages/getAllMessages/${selectedChat._id}`,
+        `https://chatwithtrinity.herokuapp.com/messages/getAllMessages/${selectedChat._id}`,
         config
       );
 
@@ -79,7 +79,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setNewMessage("");
         console.log(newMessage,selectedChat._id);
         const { data } = await axios.post(
-          "http://localhost:8080/messages/send",
+          "https://chatwithtrinity.herokuapp.com/messages/send",
           {
             content: newMessage,
             chat: selectedChat._id,

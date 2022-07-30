@@ -58,7 +58,7 @@ const GroupChatModal = ({ children }) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/auth/getUserDetails?username=${search}`,
+        `https://chatwithtrinity.herokuapp.com/auth/getUserDetails?username=${search}`,
         config
       );
       console.log(data.users, "users search response from server");
@@ -105,7 +105,7 @@ const GroupChatModal = ({ children }) => {
       };
 
       const { data } = await axios.post(
-        `http://localhost:8080/chat/group`,
+        `https://chatwithtrinity.herokuapp.com/chat/group`,
         {
           chatName: groupChatName,
           users: pya,

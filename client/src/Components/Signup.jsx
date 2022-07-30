@@ -28,7 +28,7 @@ const Signup = () => {
       
         // console.log("hello")
         try{
-         await axios.post("http://localhost:8080/auth/register",register).then(({data}) =>{
+         await axios.post("https://chatwithtrinity.herokuapp.com/auth/register",register).then(({data}) =>{
             console.log(data,"data")
 
            

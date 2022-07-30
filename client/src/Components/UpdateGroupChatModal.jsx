@@ -50,7 +50,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
         headers: { Authorization: `Bearer ${user.token}`}
       };
 
-      const { data } = await axios.get(`http://localhost:8080/auth/getUserDetails?username=${search}`, config);
+      const { data } = await axios.get(`https://chatwithtrinity.herokuapp.com/auth/getUserDetails?username=${search}`, config);
 
       console.log(data.users, 'user search response');
       setLoading(false);
@@ -81,7 +81,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
         };
 
       const { data } = await axios.put(
-        `http://localhost:8080/chat/renameGroup`,
+        `https://chatwithtrinity.herokuapp.com/chat/renameGroup`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName, 
@@ -138,7 +138,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       };
 
       const { data } = await axios.put(
-        `http://localhost:8080/chat/addToGroup`,
+        `https://chatwithtrinity.herokuapp.com/chat/addToGroup`,
         {
           chatId: selectedChat._id,
           userId: userToBeAdded._id,
@@ -189,7 +189,7 @@ const UpdateGroupChatModal = ({  fetchAgain, setFetchAgain, fetchMessages }) => 
       };
 
       const { data } = await axios.put(
-        `http://localhost:8080/chat/removeFromGroup`,
+        `https://chatwithtrinity.herokuapp.com/chat/removeFromGroup`,
         {
           chatId: selectedChat._id,
           userId: userToBeRemoved._id,

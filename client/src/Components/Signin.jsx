@@ -26,7 +26,7 @@ const Signin = () => {
     const handleSubmit = async() => {
       console.log(login,"login")
       try {
-        const {data} = await axios.post("http://localhost:8080/auth/login",login);
+        const {data} = await axios.post("https://chatwithtrinity.herokuapp.com/auth/login",login);
         console.log(data)
 
       let payload = data.user;
