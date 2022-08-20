@@ -28,14 +28,14 @@ const ProfileModal = ({ user, children }) => {
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered >
         <ModalOverlay />
-        <ModalContent h="380px" bg="teal.600">
+        <ModalContent h="380px" bg="white">
           <ModalHeader
             fontSize="40px"
             fontFamily="Work sans"
             display="flex"
             justifyContent="center"
             fontWeight="bold"
-            color="yellow.400"
+            // color="yellow.400"
           >
             {user.username}
           </ModalHeader>
@@ -46,9 +46,12 @@ const ProfileModal = ({ user, children }) => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <Avatar size="2xl" name={user.username} borderColor="black" borderWidth="2px" bg="yellow.400" color="black"/>
+            <Avatar size="2xl" name={user.username} borderColor="black" borderWidth="2px" bg="#E8E8E8" 
+            // bg="yellow.400" 
+            color="black"/>
             <Text
-              fontSize={{ base: "28px", md: "30px" }} fontWeight="bold" color="yellow.400"
+              fontSize={{ base: "28px", md: "30px" }} fontWeight="bold" 
+              // color="yellow.400"
               fontFamily="Work sans"
             >
               Email: {user.email}
