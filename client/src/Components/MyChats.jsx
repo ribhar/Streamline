@@ -22,7 +22,7 @@ const MyChats = ({ fetchAgain }) => {
         headers: { Authorization: `Bearer ${user.token}`}
       };
 
-      const { data } = await axios.get("https://chatwithtrinity.herokuapp.com/chat", config);
+      const { data } = await axios.get("https://streamline-eight.herokuapp.com/chat", config);
       setChats(data);
       console.log(data, 'fetching all users chats in my chats');
 

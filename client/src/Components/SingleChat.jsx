@@ -16,7 +16,7 @@ import Robo from '../assets/robot.gif';
 
 import io from "socket.io-client";
 
-const ENDPOINT = "https://chatwithtrinity.herokuapp.com/"; 
+const ENDPOINT = "https://streamline-eight.herokuapp.com/"; 
 
 var socket, selectedChatCompare;
 
@@ -43,7 +43,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `https://chatwithtrinity.herokuapp.com/messages/getAllMessages/${selectedChat._id}`,
+        `https://streamline-eight.herokuapp.com/messages/getAllMessages/${selectedChat._id}`,
         config
       );
 
@@ -79,7 +79,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         setNewMessage("");
         console.log(newMessage,selectedChat._id);
         const { data } = await axios.post(
-          "https://chatwithtrinity.herokuapp.com/messages/send",
+          "https://streamline-eight.herokuapp.com/messages/send",
           {
             content: newMessage,
             chat: selectedChat._id,

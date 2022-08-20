@@ -31,7 +31,7 @@ const Otp = ({id}) => {
 
     try {
 
-      const {data} = await axios.post(`https://chatwithtrinity.herokuapp.com/auth/checkOtp/${id}`,{otp:otp});
+      const {data} = await axios.post(`https://streamline-eight.herokuapp.com/auth/checkOtp/${id}`,{otp:otp});
             
         let payload = data.user;
         payload.token = data.token;

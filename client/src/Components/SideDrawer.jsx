@@ -66,7 +66,7 @@ const SideDrawer = () => {
         headers: { Authorization: `Bearer ${user.token}`}
       };
 
-      const { data } = await axios.get(`https://chatwithtrinity.herokuapp.com/auth/getUserDetails?username=${search}`, config);
+      const { data } = await axios.get(`https://streamline-eight.herokuapp.com/auth/getUserDetails?username=${search}`, config);
       console.log(data, 'searchQuerry keyword response data');
 
       setLoading(false);
@@ -99,7 +99,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`https://chatwithtrinity.herokuapp.com/chat`, { userId }, config);
+      const { data } = await axios.post(`https://streamline-eight.herokuapp.com/chat`, { userId }, config);
 
       if (!chats.find((chat) => chat._id === data._id)) setChats([data, ...chats]); 
 
