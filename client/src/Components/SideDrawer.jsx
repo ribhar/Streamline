@@ -199,7 +199,7 @@ const SideDrawer = () => {
               <Button onClick={handleSearch}>Go</Button>
             </Box>
             {loading ? (
-              "spinner"
+              <Spinner ml="auto" d="flex" />
             ) : (
               searchResult?.map((user) => (
                 <UserListItem
