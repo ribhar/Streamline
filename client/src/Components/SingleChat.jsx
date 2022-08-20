@@ -10,7 +10,7 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
-import ChatContext from "../Context/chat-context.js";
+import Chwb(181 21% 22%)"../Context/chat-context.js";
 import Robo from '../assets/robot.gif';
 
 
@@ -177,7 +177,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={2}
-            bg="#E8E8E8"
+            bg="#EEEEEE"
             w="100%"
             h="100%"
             borderRadius="lg"
@@ -212,7 +212,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               )}
               <Input
                 variant="filled"
-                bg="#E0E0E0"
+                bg="#E8E8E8"
                 placeholder="Enter a message.."
                 value={newMessage}
                 onChange={typingHandler}
