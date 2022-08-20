@@ -10,7 +10,7 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./ProfileModal";
 import ScrollableChat from "./ScrollableChat";
 import UpdateGroupChatModal from "./UpdateGroupChatModal";
-import Chwb(181 21% 22%)"../Context/chat-context.js";
+import ChatContext from "../Context/chat-context.js";
 import Robo from '../assets/robot.gif';
 
 
