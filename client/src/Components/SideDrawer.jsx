@@ -161,7 +161,7 @@ const SideDrawer = () => {
      
 
         <Text cursor="pointer" onClick={()=>{navigate("/chat")}} fontSize="3xl" fontFamily="Work sans bold" fontWeight='bold' color="gray.200" >
-          Trinity
+          Streamline
         </Text>
 
         <div>
