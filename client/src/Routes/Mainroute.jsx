@@ -11,7 +11,7 @@ import Todo from '../Todo/Todo'
 
 const Mainroute = () => {
   return (
-    <div className="bg-teal-800 h-[120vh]">
+    <div className="bg-teal-800 h-[100vh]">
       <Routes>
             <Route path="/todo" element={<Todo/>}/>
             <Route path="/" element={<HomePage/>}/>

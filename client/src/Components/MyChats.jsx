@@ -101,6 +101,7 @@ const MyChats = ({ fetchAgain }) => {
                 px={3}
                 py={2}
                 borderRadius="lg"
+                width='97%'
                 key={chat._id}
               >
                 <Text>

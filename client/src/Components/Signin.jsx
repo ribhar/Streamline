@@ -3,15 +3,24 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Styles from "./Styles.module.css";
+// import {
+//   Alert,
+//   AlertIcon,
+//   AlertTitle,
+//   AlertDescription,
+// } from "@chakra-ui/react";
+// import { , HStack, VStack } from "@chakra-ui/react";
 import {
+  Stack,
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
-} from "@chakra-ui/react";
-import { Stack, HStack, VStack } from "@chakra-ui/react";
+} from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 
 const Signin = () => {
+  const toast = useToast();
   const [login, setLogin] = useState([]);
   const navigate = useNavigate();
   const [status, setStatus] = useState();
@@ -24,10 +33,8 @@ const Signin = () => {
   };
 
     const handleSubmit = async() => {
-      console.log(login,"login")
       try {
         const {data} = await axios.post("https://streamlinenine.herokuapp.com/auth/login",login);
-        console.log(data)
 
       let payload = data.user;
       payload.token = data.token;
@@ -36,105 +43,26 @@ const Signin = () => {
 
       if (data) {
         setStatus(true);
+        toast({
+          title: `Login Successfull`,
+          status: 'success',
+          position: 'top',
+          isClosable: true,
+        })
         // alert("login successfull")
+        setTimeout(() => {
+          navigate("/chat");
+        }, 4000);
       }
     } catch (err) {
-      setStatus(false);
+      toast({
+        title: `Wrong Credentials`,
+        status: 'error',
+        position: 'top',
+        isClosable: true,
+      })
     }
   };
-
-  if (status === true) {
-    return (
-      <>
-      <div style={{display:'flex'}}>
-        <Stack spacing={3}>
-          <Alert status="success" variant="subtle" height='50px' width="400px" marginTop="-140px">
-            <AlertIcon />
-            Login Successful
-          </Alert>
-        </Stack>
-       
-        <div className={Styles.home} >
-          <h1 style={{marginTop:'10px',fontWeight:'bold'}} onClick={() => {
-            navigate("/chat");
-          }}>OK</h1>
-        </div>
-      </div>
-
-        <div className={Styles.main1}>
-        <h2 className={Styles.div2}>Login</h2>
-          <div className={Styles.div}>
-            
-            <h3>Email</h3>
-            <input
-              className={Styles.input}
-              type="text"
-              placeholder="Enter Email Address"
-              name="email"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className={Styles.div}>
-          <h3>Password</h3>
-            <input
-              className={Styles.input}
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className={Styles.signup}>
-            <button onClick={handleSubmit}>Sign In</button>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  if (status === false) {
-    return (
-      <>
-        <Stack spacing={3}>
-          <Alert status="error" width="480px" height='50px' marginTop="-140px" >
-            <AlertIcon />
-            Wrong Credentials
-          </Alert>
-        </Stack>
-        <div className={Styles.main1}>
-        <h2 className={Styles.div2}>Login</h2>
-          <div className={Styles.div}>
-           
-            <h3>Email</h3>
-            <input
-              className={Styles.input}
-              type="text"
-              placeholder="Enter Email Address"
-              name="email"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className={Styles.div}>
-          <h3>Password</h3>
-            <input
-              className={Styles.input}
-              type="password"
-              placeholder="Enter Password"
-              name="password"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className={Styles.signup}>
-            <button onClick={handleSubmit}>Sign In</button>
-          </div>
-        </div>
-      </>
-    );
-  }
   return (
     <>
       <div className={Styles.main1}>

@@ -16,10 +16,12 @@ const ScrollableChat = ({ messages }) => {
   console.log(messages)
 
   return (
-    <ScrollableFeed>
+    <div>
       {messages &&
         messages.map((message, i) => (
-          <div style={{ display: "flex" }} key={message._id}>
+          <div style={{ display: "flex" }} key={message._id}
+
+          >
             {(isSameSender(messages, message, i, user._id) ||
               isLastMessage(messages, i, user._id)) && (
               <Tooltip label={message.sender.username} placement="bottom-start" hasArrow>
@@ -29,6 +31,7 @@ const ScrollableChat = ({ messages }) => {
                   size="sm"
                   cursor="pointer"
                   name={message.sender.username}
+                  
                 />
               </Tooltip>
             )}
@@ -38,9 +41,10 @@ const ScrollableChat = ({ messages }) => {
                   message.sender._id === user._id ? "#BEE3F8" : "#B9F5D0"
                 }`,
                 marginLeft: isSameSenderMargin(messages, message, i, user._id),
+                marginRight: '10px',
                 marginTop: isSameUser(messages, message, i, user._id) ? 3 : 10,
                 borderRadius: "20px",
-                padding: "5px 15px",
+                padding: "5px 20px",
                 maxWidth: "75%",
               }}
             >
@@ -48,7 +52,7 @@ const ScrollableChat = ({ messages }) => {
             </span>
           </div>
         ))}
-    </ScrollableFeed>
+    </div>
   );
 };
 

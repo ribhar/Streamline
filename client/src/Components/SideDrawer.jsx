@@ -4,6 +4,7 @@ import ChatContext from "../Context/chat-context.js";
 import ProfileModal from "./ProfileModal";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Box, Text } from "@chakra-ui/layout";
+import { Flex, Spacer } from '@chakra-ui/react'
 import {
   Menu,
   MenuButton,
@@ -45,19 +46,23 @@ const SideDrawer = () => {
     localStorage.removeItem("userInformation");
     navigate("/");
   };
+  const handleChange = (e)=>{
+    setSearch(e.target.value)
+    handleSearch();
+  }
 
   const handleSearch = async() => {
 
-    if (!search) {
-      toast({
-        title: "Please Enter something in search",
-        status: "warning",
-        duration: 3000,
-        isClosable: true,
-        position: "top-left",
-      });
-      return;
-    }
+    // if (!search) {
+    //   toast({
+    //     title: "Please Enter something in search",
+    //     status: "warning",
+    //     duration: 3000,
+    //     isClosable: true,
+    //     position: "top-left",
+    //   });
+    //   return;
+    // }
 
     try {
       setLoading(true);
@@ -194,12 +199,16 @@ const SideDrawer = () => {
                 placeholder="Search by name or email"
                 mr={2}
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handleChange}
               />
               <Button onClick={handleSearch}>Go</Button>
             </Box>
             {loading ? (
-              <Spinner ml="auto" d="flex" />
+              <Flex justifyContent='center'>
+              <Box h='10'>
+              <Spinner/>
+              </Box>
+</Flex>
             ) : (
               searchResult?.map((user) => (
                 <UserListItem
