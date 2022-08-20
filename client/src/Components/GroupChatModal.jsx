@@ -58,7 +58,7 @@ const GroupChatModal = ({ children }) => {
       };
 
       const { data } = await axios.get(
-        `https://streamline-eight.herokuapp.com/auth/getUserDetails?username=${search}`,
+        `https://streamlinenine.herokuapp.com/auth/getUserDetails?username=${search}`,
         config
       );
       console.log(data.users, "users search response from server");
@@ -105,7 +105,7 @@ const GroupChatModal = ({ children }) => {
       };
 
       const { data } = await axios.post(
-        `https://streamline-eight.herokuapp.com/chat/group`,
+        `https://streamlinenine.herokuapp.com/chat/group`,
         {
           chatName: groupChatName,
           users: pya,

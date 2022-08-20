@@ -31,7 +31,7 @@ const Otp = ({id}) => {
 
     try {
 
-      const {data} = await axios.post(`https://streamline-eight.herokuapp.com/auth/checkOtp/${id}`,{otp:otp});
+      const {data} = await axios.post(`https://streamlinenine.herokuapp.com/auth/checkOtp/${id}`,{otp:otp});
             
         let payload = data.user;
         payload.token = data.token;
@@ -63,7 +63,7 @@ const Otp = ({id}) => {
     // console.log(resendData,"resend")
     // try {
     //     await axios
-    //       .post("http://localhost:8080/auth/register",resendData)
+    //       .post("https://streamlinenine.herokuapp.com/auth/register",resendData)
     //       .then(({ data }) => {
     //         console.log(data, "data");
     //       });

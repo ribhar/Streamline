@@ -14,7 +14,7 @@ const TagInput = () => {
             }
             const value = e.target.value
 
-            const data  = await axios.get(`https://streamline-eight.herokuapp.com/auth/getUserDetails?username=${value}`)
+            const data  = await axios.get(`https://streamlinenine.herokuapp.com/auth/getUserDetails?username=${value}`)
             setUsers(data.data.users)
             console.log(value )
             if(e.key!=="Enter") return

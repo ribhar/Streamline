@@ -28,7 +28,7 @@ const Signup = () => {
       
         // console.log("hello")
         try{
-         await axios.post("https://streamline-eight.herokuapp.com/auth/register",register).then(({data}) =>{
+         await axios.post("https://streamlinenine.herokuapp.com/auth/register",register).then(({data}) =>{
             console.log(data,"data")
 
            
