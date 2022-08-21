@@ -85,7 +85,9 @@ const Otp = ({id}) => {
         <div className={Styles.mainOtp}>
 
             <div>
-                <p style={{textAlign:'center',color:'teal',fontWeight:'bold'}}>Enter OTP</p>
+                <p style={{
+                  // textAlign:'center',
+                  color:'teal',fontWeight:'bold'}}>Enter OTP</p>
             </div>
 
           <div style={{ marginTop: "12px" }} className={Styles.otpinput}>

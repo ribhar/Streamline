@@ -143,6 +143,7 @@ const SideDrawer = () => {
         borderWidth="1px"
         borderColor="black"
         bg="teal.600"
+        // bg="White"
         color="black"
       >
       <div>

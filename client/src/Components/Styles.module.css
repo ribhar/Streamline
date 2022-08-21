@@ -60,11 +60,11 @@
   color: teal;
 }
 .mainOtp {
-  margin: auto;
+  margin: 20px auto 0;
   width: 500px;
   box-sizing: border-box;
-  padding: 5px;
-  background-color:  rgb(235,248,255);
+  /* padding: 5px; */
+  /* background-color:  rgb(235,248,255); */
   /* border: 1px solid red; */
 }
 .otpinput {
@@ -136,3 +136,53 @@
 }
 
 
+@media all and (max-width: 768px) and (min-width: 480px){
+ 
+  .mainOtp{
+    width: 380px;
+  }
+  .otpinput {
+    width: 350px;
+  }
+
+
+  .main {
+    width: 380px;
+  }
+
+
+  .main1 {
+    /* margin: auto; */
+    width: 380px;
+  }
+  .input {
+    width: 350px;
+  }
+  .signup > button {
+    width: 350px;
+  }
+}
+@media all and (max-width: 479px) and (min-width: 50px){
+  .mainOtp{
+    width: 250px;
+  }
+  .otpinput {
+    width: 230px;
+  }
+
+
+
+  .main {
+    width: 250px;
+  }
+  .main1 {
+    
+    width: 250px;
+  }
+  .input {
+    width: 230px;
+  }
+  .signup > button {
+    width: 230px;
+  }
+}
