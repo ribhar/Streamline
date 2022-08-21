@@ -84,9 +84,10 @@ const Otp = ({id}) => {
 
         <div className={Styles.mainOtp}>
 
-            <div>
+            <div style={{marginTop: "auto"}}>
                 <p style={{
                   // textAlign:'center',
+                  marginTop: "auto",
                   color:'teal',fontWeight:'bold'}}>Enter OTP</p>
             </div>
 
@@ -94,27 +95,33 @@ const Otp = ({id}) => {
             <HStack>
               <PinInput>
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp1(e.target.value)}
                 />
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp2(e.target.value)}
                 />
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp3(e.target.value)}
                 />
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp4(e.target.value)}
                 />
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp5(e.target.value)}
                 />
                 <PinInputField
-                  style={{ width: "90px" }}
+                  // style={{ width: "90px" }}
+                  width={{ base: '90px', md: '60px', sm: '40px' }}
                   onChange={(e) => setOtp6(e.target.value)}
                 />
               </PinInput>
