@@ -81,12 +81,11 @@ go to http://localhost:3000
 * start the application 'npm start' -->
 ## Functionalities of the application
 
-1. A user can register his account on the website.
-2. User can log in using credentials given during registration.
-3. User can search for various types of items such as Fruits, Vegetables and much more.
-4. User can filter and sort his/her search on various parameters, i.e. price, type, and many more.
-5. User can select the Quantity while purchasing any product.
-6. User can make payments and succcessfully purchase their Fruits.
+1. Users can chat with anyone registered on the application
+2. Users can create groups to start working on their projects
+3. Admin has access to add/remove members from the group
+4. Users can create tasks and assign them to any team member
+
 
 
 ### Screenshots
