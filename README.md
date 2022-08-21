@@ -2,7 +2,7 @@
 
 Streamline chat application where proffestionals can chat and assign tasks all in the real time.
 
-<a href="https://streamline-eight.vercel.app/">![Logo](https://cdn.shopify.com/s/files/1/0449/5225/6667/files/website-logo_400x.png?v=1596288204)</a>
+<a href="https://streamline-eight.vercel.app/">![Logo](https://github.com/ribhar/Streamline/blob/master/client/src/assets/logo.PNG)</a>
 
 ### Description
 
