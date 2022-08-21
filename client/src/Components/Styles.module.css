@@ -137,7 +137,12 @@
 
 
 @media all and (max-width: 768px) and (min-width: 480px){
- 
+  .signup{
+    width: 350px;
+  }
+  button{
+    width: 350px;
+  }
   .mainOtp{
     width: 380px;
   }
@@ -161,8 +166,23 @@
   .signup > button {
     width: 350px;
   }
+  .signup > button:active  {
+    width: 350px;
+  }
+  .signup > button:hover  {
+    width: 350px;
+  }
+  .signup > button:visited  {
+    width: 350px;
+  }
 }
 @media all and (max-width: 479px) and (min-width: 50px){
+  .signup{
+    width: 230px;
+  }
+  button{
+    width: 230px;
+  }
   .mainOtp{
     width: 250px;
   }
@@ -184,5 +204,14 @@
   }
   .signup > button {
     width: 230px;
+  }
+  .signup > button:active  {
+    width: 350px;
+  }
+  .signup > button:hover  {
+    width: 350px;
+  }
+  .signup > button:visited  {
+    width: 350px;
   }
 }
