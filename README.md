@@ -5,30 +5,20 @@ Streamline chat application where proffestionals can chat and assign tasks all i
 ### Description
 
 Created chat application for streamline communication at work, where user can create account and login.
-Create a group/team and add members to the group, have conversation/interaction with the team, and simultaneously
-assign task for perticular individual in the team.
+Create a group/team and add members to the group, have conversation/interaction with the team, and simultaneously assign task for perticular individual in the team.
 
-### Functionalities are:
+#### Tech Stack-
 
-* User Authentication
-* Logout
-* Send Messages
-* Group Chats
-* Assiginig Task
-
-### Tech Stack
-
-* React
-* MongoDB
-* Express
-* Node.js
-* Javascript 
-* Nodemailer
-* Socket.io
-* Chackra UI
-* Mongoose
-* HTML
-* CSS
+<p float="left">
+   <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-mongodb.svg" alt="mongodb" width="40" height="40"/> </a>
+   <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/express.png" alt="express" width="40" height="40"/> </a>
+  <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-react-native.svg" alt="react" width="40" height="40"/> </a> 
+   <a href="https://redux.js.org/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-redux.svg" alt="redux" width="40" height="40"/> 
+  <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-node-js.svg" alt="nodejs" width="40" height="40"/> </a>
+   <a href="https://mongoosejs.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/mongoose.png" alt="mongoose" width="60" height="30"/> </a>
+  <a href="https://dashboard.heroku.com/" target="_blank" rel="noreferrer"> <img src="https://github.com/ribhar/ribhar/blob/main/giticons/icons8-heroku.svg" alt="heroku" width="40" height="40"/> </a>
+</p>
+ 
 
 ### Installation Requirements
 
