@@ -2,10 +2,13 @@
 
 Streamline chat application where proffestionals can chat and assign tasks all in the real time.
 
+<a href="https://streamline-eight.vercel.app/">![Logo](https://cdn.shopify.com/s/files/1/0449/5225/6667/files/website-logo_400x.png?v=1596288204)</a>
+
 ### Description
 
 Created chat application for streamline communication at work, where user can create account and login.
-Create a group/team and add members to the group, have conversation/interaction with the team, and simultaneously assign task for perticular individual in the team.
+Create a group/team and add members to the group, have conversation/interaction with the team, and simultaneously assign task for particular individual in the team.
+
 
 <!-- ### Tech Stack
 
@@ -35,12 +38,56 @@ Create a group/team and add members to the group, have conversation/interaction 
 </p>
  
 
-### Installation Requirements
+### <u>Deployed Link</u>
+
+
+Deployed with Vercel
+```
+https://streamline-eight.vercel.app/
+ ```
+
+### <u>Run Locally</u>
+
+Clone the project
+
+```
+https://github.com/ribhar/Streamline.git
+
+```
+
+Install npm packages
+
+```
+npm install
+```
+
+Run the server
+
+```
+npm start
+```
+
+View in Browser
+
+```
+go to http://localhost:3000
+```
+
+<!-- ### Installation Requirements
 
 * Fork the repo, then clone it
 * install all dependencies, with 'npm install'
 * start the server 'npm run dev'
-* start the application 'npm start'
+* start the application 'npm start' -->
+## Functionalities of the application
+
+1. A user can register his account on the website.
+2. User can log in using credentials given during registration.
+3. User can search for various types of items such as Fruits, Vegetables and much more.
+4. User can filter and sort his/her search on various parameters, i.e. price, type, and many more.
+5. User can select the Quantity while purchasing any product.
+6. User can make payments and succcessfully purchase their Fruits.
+
 
 ### Screenshots
 
@@ -60,8 +107,11 @@ Create a group/team and add members to the group, have conversation/interaction 
 ![Screenshot (48)](https://user-images.githubusercontent.com/100186167/185743399-80bfbe2c-1179-4978-a07f-cafaeee39265.png)
 ![Screenshot (49)](https://user-images.githubusercontent.com/100186167/185743444-b0362987-3c9a-498d-bb05-bec83249773c.png)
 
-### Deployed site
+## Contributors
 
-[Deployed Link of website](https://streamline-eight.vercel.app/)
+- [@Parth Bisht](https://github.com/Parth-Bisht)
+- [@Monica Priya](https://github.com/Monica1310)
+- [@Ritik Bhardwaj](https://github.com/ribhar)
+
 
 
