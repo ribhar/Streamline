@@ -175,14 +175,20 @@ const SideDrawer = () => {
               _hover={{background: "purple.800", color:"yellow.400"}} _active={{background: "purple.800", color:"yellow.400"}}>
               <Avatar size="sm" cursor="pointer" name={user.name} borderColor="black" borderWidth="2px" bg="yellow.400" color="black"/>
             </MenuButton>
-            <MenuList bg = "teal.600" borderColor="black" borderWidth="2px">
+            <MenuList bg = "#EEEEEE" 
+            // borderColor="black" borderWidth="2px"
+            >
               <ProfileModal user={user}>
-                <MenuItem fontWeight="bold" color="black" _hover={{background: "yellow.400"}}  >
+                <MenuItem fontWeight="bold" color="black"
+                 _hover={{background: "#E8E8E8"}}  
+                 >
                   My Profile
                 </MenuItem>{" "}
               </ProfileModal>
               <MenuDivider/>
-              <MenuItem fontWeight="bold" color="black" onClick={logoutHandler} _hover={{background: "purple.600"}}>
+              <MenuItem fontWeight="bold" color="black" onClick={logoutHandler}
+               _hover={{background: "#E8E8E8"}}
+               >
                 Logout
               </MenuItem>
             </MenuList>
