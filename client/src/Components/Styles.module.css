@@ -67,6 +67,12 @@
   /* background-color:  rgb(235,248,255); */
   /* border: 1px solid red; */
 }
+.mainOtp>div{
+  margin:auto
+}
+.mainOtp>div:last-child{
+  margin-top: 20px;
+}
 .otpinput {
   /* border: 1px solid red; */
   /* margin: auto; */
@@ -105,6 +111,8 @@
     font-weight: bold;
     /* font-size: 20px; */
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap:25px;
     /* border: 1px solid black; */
 }
